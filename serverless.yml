@@ -1,0 +1,30 @@
+service: image-resize
+
+provider:
+	name: aws
+	runtime: python2.7
+	region: ap-south-1
+	iamEoleStatements:
+		-Effect: Allow
+		Action:
+			- s3:GetObject
+			- s3:PutObject
+		Resource: 'arn:aws:s3:::hcool2489/*'
+
+functions:
+	resize:
+		handler: handler.main
+		environment:
+			BUCKET: hcool2489
+			REGION: ap-south-1
+		events:
+			- http:
+				path: /{size}/{image}
+				methon: get
+
+resources:
+	Resources:
+		ResizedImages:
+			Type: AWS::S3::Bucket
+			Properties:
+				BucketName: hcool2489
