@@ -1,0 +1,6 @@
+
+.env
+.serverless/serverless-state.json
+.serverless/image-resize.zip
+.serverless/cloudformation-template-create-stack.json
+.serverless/cloudformation-template-update-stack.json
